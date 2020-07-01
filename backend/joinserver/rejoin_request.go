@@ -5,8 +5,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/brocaar/lorawan"
-	"github.com/brocaar/lorawan/backend"
+	"github.com/wisang1999/lorawan"
+	"github.com/wisang1999/lorawan/backend"
 )
 
 var rejoinTasks = []func(*context) error{

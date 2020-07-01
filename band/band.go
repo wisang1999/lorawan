@@ -9,7 +9,7 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/brocaar/lorawan"
+	"github.com/wisang1999/lorawan"
 )
 
 const latest = "latest"
@@ -56,6 +56,7 @@ const (
 	AU915 Name = "AU915"
 	CN470 Name = "CN470"
 	AS923 Name = "AS923"
+	AS921 Name = "AS921"
 	KR920 Name = "KR920"
 	IN865 Name = "IN865"
 	RU864 Name = "RU864"
@@ -638,6 +639,8 @@ func channelIsActive(channels []int, i int) bool {
 // of the repeater and dwell time arguments.
 func GetConfig(name Name, repeaterCompatible bool, dt lorawan.DwellTime) (Band, error) {
 	switch name {
+	case AS_921, AS921:
+		return newAS921Band(repeaterCompatible, dt)
 	case AS_923, AS923:
 		return newAS923Band(repeaterCompatible, dt)
 	case AU_915_928, AU915:

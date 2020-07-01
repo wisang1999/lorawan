@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/brocaar/lorawan"
-	"github.com/brocaar/lorawan/band"
+	"github.com/wisang1999/lorawan"
+	"github.com/wisang1999/lorawan/band"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 )

@@ -8,7 +8,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/brocaar/lorawan"
+	"github.com/wisang1999/lorawan"
 )
 
 // CID defines the command identifier.

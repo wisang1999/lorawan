@@ -9,14 +9,14 @@ import (
 	. "github.com/smartystreets/goconvey/convey"
 )
 
-func TestAS923Band(t *testing.T) {
-	Convey("Given the AS 923 band is selected and 400ms dwell-time is set", t, func() {
-		band, err := GetConfig(AS_923, true, lorawan.DwellTime400ms)
+func TestAS921Band(t *testing.T) {
+	Convey("Given the AS 921 band is selected and 400ms dwell-time is set", t, func() {
+		band, err := GetConfig(AS_921, true, lorawan.DwellTime400ms)
 		So(err, ShouldBeNil)
 
 		Convey("Then GetDefaults returns the expected value", func() {
 			So(band.GetDefaults(), ShouldResemble, Defaults{
-				RX2Frequency:     923200000,
+				RX2Frequency:     921400000,
 				RX2DataRate:      2,
 				MaxFCntGap:       16384,
 				ReceiveDelay1:    time.Second,
@@ -33,7 +33,7 @@ func TestAS923Band(t *testing.T) {
 		Convey("Then GetPingSlotFrequency returns the expected value", func() {
 			freq, err := band.GetPingSlotFrequency(lorawan.DevAddr{}, 0)
 			So(err, ShouldBeNil)
-			So(freq, ShouldEqual, 923400000)
+			So(freq, ShouldEqual, 921600000)
 		})
 
 		Convey("Then GetRX1ChannelIndexForUplinkChannelIndex returns the expected value", func() {
@@ -43,9 +43,9 @@ func TestAS923Band(t *testing.T) {
 		})
 
 		Convey("Then RX1FrequencyForUplinkFrequency returns the expected value", func() {
-			f, err := band.GetRX1FrequencyForUplinkFrequency(923200000)
+			f, err := band.GetRX1FrequencyForUplinkFrequency(921400000)
 			So(err, ShouldBeNil)
-			So(f, ShouldEqual, 923200000)
+			So(f, ShouldEqual, 921400000)
 		})
 
 		Convey("When testing GetRX1DataRateIndex", func() {
@@ -78,8 +78,8 @@ func TestAS923Band(t *testing.T) {
 		})
 	})
 
-	Convey("Given the AS 923 band is selected and no dwell-time is set", t, func() {
-		band, err := GetConfig(AS_923, true, lorawan.DwellTimeNoLimit)
+	Convey("Given the AS 921 band is selected and no dwell-time is set", t, func() {
+		band, err := GetConfig(AS_921, true, lorawan.DwellTimeNoLimit)
 		So(err, ShouldBeNil)
 
 		Convey("When testing GetRX1DataRateIndex", func() {

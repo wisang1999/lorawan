@@ -9,7 +9,7 @@ import (
 	"time"
 
 	keywrap "github.com/NickBall/go-aes-key-wrap"
-	"github.com/brocaar/lorawan"
+	"github.com/wisang1999/lorawan"
 	"github.com/pkg/errors"
 )
 

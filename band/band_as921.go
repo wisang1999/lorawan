@@ -7,18 +7,18 @@ import (
 	"github.com/wisang1999/lorawan"
 )
 
-type as923Band struct {
+type as921Band struct {
 	band
 	dwellTime lorawan.DwellTime
 }
 
-func (b *as923Band) Name() string {
-	return "AS923"
+func (b *as921Band) Name() string {
+	return "AS921"
 }
 
-func (b *as923Band) GetDefaults() Defaults {
+func (b *as921Band) GetDefaults() Defaults {
 	return Defaults{
-		RX2Frequency:     923200000,
+		RX2Frequency:     921400000,
 		RX2DataRate:      2,
 		MaxFCntGap:       16384,
 		ReceiveDelay1:    time.Second,
@@ -28,27 +28,27 @@ func (b *as923Band) GetDefaults() Defaults {
 	}
 }
 
-func (b *as923Band) GetDownlinkTXPower(freq int) int {
+func (b *as921Band) GetDownlinkTXPower(freq int) int {
 	return 14
 }
 
-func (b *as923Band) GetDefaultMaxUplinkEIRP() float32 {
+func (b *as921Band) GetDefaultMaxUplinkEIRP() float32 {
 	return 16
 }
 
-func (b *as923Band) GetPingSlotFrequency(lorawan.DevAddr, time.Duration) (int, error) {
-	return 923400000, nil
+func (b *as921Band) GetPingSlotFrequency(lorawan.DevAddr, time.Duration) (int, error) {
+	return 921600000, nil
 }
 
-func (b *as923Band) GetRX1ChannelIndexForUplinkChannelIndex(uplinkChannel int) (int, error) {
+func (b *as921Band) GetRX1ChannelIndexForUplinkChannelIndex(uplinkChannel int) (int, error) {
 	return uplinkChannel, nil
 }
 
-func (b *as923Band) GetRX1FrequencyForUplinkFrequency(uplinkFrequency int) (int, error) {
+func (b *as921Band) GetRX1FrequencyForUplinkFrequency(uplinkFrequency int) (int, error) {
 	return uplinkFrequency, nil
 }
 
-func (b *as923Band) GetRX1DataRateIndex(uplinkDR, rx1DROffset int) (int, error) {
+func (b *as921Band) GetRX1DataRateIndex(uplinkDR, rx1DROffset int) (int, error) {
 	if rx1DROffset < 0 || rx1DROffset > 7 {
 		return 0, fmt.Errorf("lorawan/band: invalid RX1 data-rate offset: %d", rx1DROffset)
 	}
@@ -76,12 +76,12 @@ func (b *as923Band) GetRX1DataRateIndex(uplinkDR, rx1DROffset int) (int, error) 
 	return dr, nil
 }
 
-func (b *as923Band) ImplementsTXParamSetup(protocolVersion string) bool {
+func (b *as921Band) ImplementsTXParamSetup(protocolVersion string) bool {
 	return true
 }
 
-func newAS923Band(repeaterCompatible bool, dt lorawan.DwellTime) (Band, error) {
-	b := as923Band{
+func newAS921Band(repeaterCompatible bool, dt lorawan.DwellTime) (Band, error) {
+	b := as921Band{
 		dwellTime: dt,
 		band: band{
 			supportsExtraChannels: true,
@@ -107,12 +107,12 @@ func newAS923Band(repeaterCompatible bool, dt lorawan.DwellTime) (Band, error) {
 				-14,
 			},
 			uplinkChannels: []Channel{
-				{Frequency: 923200000, MinDR: 0, MaxDR: 5, enabled: true},
-				{Frequency: 923400000, MinDR: 0, MaxDR: 5, enabled: true},
+				{Frequency: 921400000, MinDR: 0, MaxDR: 5, enabled: true},
+				{Frequency: 921600000, MinDR: 0, MaxDR: 5, enabled: true},
 			},
 			downlinkChannels: []Channel{
-				{Frequency: 923200000, MinDR: 0, MaxDR: 5, enabled: true},
-				{Frequency: 923400000, MinDR: 0, MaxDR: 5, enabled: true},
+				{Frequency: 921400000, MinDR: 0, MaxDR: 5, enabled: true},
+				{Frequency: 921600000, MinDR: 0, MaxDR: 5, enabled: true},
 			},
 		},
 	}

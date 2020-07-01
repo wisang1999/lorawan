@@ -5,7 +5,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/brocaar/lorawan"
+	"github.com/wisang1999/lorawan"
 )
 
 type us902Band struct {
